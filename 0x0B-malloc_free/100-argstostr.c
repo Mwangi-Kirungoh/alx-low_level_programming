@@ -2,21 +2,43 @@
 #include <stdlib.h>
 
 /**
-* free_grid - Frees a 2 dimensional grid previously created by alloc_grid
-* @grid: Pointer to the grid to be freed
-* @height: The height of the grid
-*/
-void free_grid(int **grid, int height)
+ * argstostr - concatenates all arguments of the program
+ * @ac: argument count
+ * @av: argument vector
+ *
+ * Return: pointer to concatenated string
+ */
+char *argstostr(int ac, char **av)
 {
-int i;
+	int i, n, r = 0, l = 0;
+	char *str;
 
-if (grid == NULL)
-return;
+	if (ac == 0 || av == NULL)
+		return (NULL);
 
-for (i = 0; i < height; i++)
-{
-free(grid[i]);
-}
+	for (i = 0; i < ac; i++)
+	{
+		for (n = 0; av[i][n]; n++)
+			l++;
+	}
 
-free(grid);
+	l += ac;
+
+	str = malloc(sizeof(char) * (l + 1));
+	if (str == NULL)
+		return (NULL);
+
+	for (i = 0; i < ac; i++)
+	{
+		for (n = 0; av[i][n]; n++)
+		{
+			str[r] = av[i][n];
+			r++;
+		}
+		str[r] = '\n';
+		r++;
+	}
+
+	str[r] = '\0';
+	return (str);
 }
