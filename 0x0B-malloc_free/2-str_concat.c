@@ -1,36 +1,52 @@
+#include "main.h"
 #include <stdlib.h>
 
-char *str_concat(char *s1, char *s2) {
-    if (s1 == NULL) {
-        s1 = "";
-    }
-    if (s2 == NULL) {
-        s2 = "";
-    }
-    
-    int s1_len = 0;
-    while (s1[s1_len] != '\0') {
-        s1_len++;
-    }
-    
-    int s2_len = 0;
-    while (s2[s2_len] != '\0') {
-        s2_len++;
-    }
-    
-    char *concat_str = malloc((s1_len + s2_len + 1) * sizeof(char));
-    if (concat_str == NULL) {
-        return NULL;
-    }
-    
-    int i, j;
-    for (i = 0; i < s1_len; i++) {
-        concat_str[i] = s1[i];
-    }
-    for (j = 0; j < s2_len; j++) {
-        concat_str[s1_len + j] = s2[j];
-    }
-    concat_str[s1_len + s2_len] = '\0';
-    
-    return concat_str;
+/**
+* str_concat - concatenate two input strings
+*
+* @s1: first input string
+* @s2: second input string
+*
+* Return: pointer to the concatenated string, NULL if fail
+*/
+char *str_concat(char *s1, char *s2)
+{
+char *concat;
+int i = 0, j = 0;
+
+if (s1 == NULL)
+s1 = "";
+
+if (s2 == NULL)
+s2 = "";
+
+while (s1[i] != '\0')
+i++;
+
+while (s2[j] != '\0')
+j++;
+
+concat = malloc(sizeof(char) * (i + j + 1));
+
+if (concat == NULL)
+return (NULL);
+
+i = j = 0;
+
+while (s1[i] != '\0')
+{
+concat[i] = s1[i];
+i++;
+}
+
+while (s2[j] != '\0')
+{
+concat[i] = s2[j];
+i++;
+j++;
+}
+
+concat[i] = '\0';
+
+return (concat);
 }
