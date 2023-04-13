@@ -1,0 +1,19 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+/* Included Libraries */
+#include <stdlib.h>
+
+/* Function Prototypes */
+int _putchar(char c);
+int _strlen(char *s);
+void _puts(char *s);
+int _isdigit(char c);
+int _atoi(char *s);
+void _print_error_and_exit(void);
+void _print_result(int *res, int len);
+int *allocate_memory(int len);
+void _fill_array_with_zeroes(int *arr, int len);
+int *multiply(char *num1, char *num2);
+
+#endif /* MAIN_H */ 
