@@ -7,8 +7,8 @@ void print_strings(const char *separator, const unsigned int n, ...);
 
 #endif /* VARIADIC_FUNCTIONS_H */
 
-
 #include "variadic_functions.h"
+#include <stdio.h>
 
 /**
  * print_strings - Prints strings, followed by a new line.
@@ -25,6 +25,12 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	char *str;
 	unsigned int index;
 
+	if (n == 0)
+	{
+		printf("\n");
+		return;
+	}
+
 	va_start(strings, n);
 
 	for (index = 0; index < n; index++)
@@ -32,12 +38,9 @@ void print_strings(const char *separator, const unsigned int n, ...)
 		str = va_arg(strings, char *);
 
 		if (str == NULL)
-			printf("(nil)");
+			printf("%s(nil)", index == 0 ? "" : separator == NULL ? "" : separator);
 		else
-			printf("%s", str);
-
-		if (index != (n - 1) && separator != NULL)
-			printf("%s", separator);
+			printf("%s%s", index == 0 ? "" : separator == NULL ? "" : separator, str);
 	}
 
 	printf("\n");
